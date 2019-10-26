@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ec0b478e-4da6-4cc9-944f-d6209a4593dc" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1SidhVt8t7y6qTAuiV73Cj2mCTk" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555343826376" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.huawei.agent" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.huawei.agent" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.JarPath">
+    <configuration name="ClientAgentAttach" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.huawei.agent.ClientAgentAttach" />
+      <module name="Agent" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.huawei.agent.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JarPath" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.agent.JarPath" />
+      <module name="Agent" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.agent.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.ClientAgentAttach" />
+      <item itemvalue="Application.JarPath" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.JarPath" />
+        <item itemvalue="Application.ClientAgentAttach" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ec0b478e-4da6-4cc9-944f-d6209a4593dc" name="Default Changelist" comment="" />
+      <created>1542286900508</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1542286900508</updated>
+      <workItem from="1542286904841" duration="488000" />
+      <workItem from="1542287696191" duration="8338000" />
+      <workItem from="1542538562864" duration="3050000" />
+      <workItem from="1542639066438" duration="8973000" />
+      <workItem from="1543235904491" duration="2622000" />
+      <workItem from="1543404024753" duration="10563000" />
+      <workItem from="1543500853553" duration="1191000" />
+      <workItem from="1543726303424" duration="716000" />
+      <workItem from="1543727059834" duration="4031000" />
+      <workItem from="1543844823081" duration="4367000" />
+      <workItem from="1544015748713" duration="1716000" />
+      <workItem from="1546306963391" duration="99000" />
+      <workItem from="1554294226497" duration="3766000" />
+      <workItem from="1554631400545" duration="373000" />
+      <workItem from="1554819798348" duration="3307000" />
+      <workItem from="1554896900123" duration="8281000" />
+      <workItem from="1555336419738" duration="819000" />
+      <workItem from="1555337705756" duration="4668000" />
+      <workItem from="1572050471870" duration="3956000" />
+      <workItem from="1572057385176" duration="668000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>
