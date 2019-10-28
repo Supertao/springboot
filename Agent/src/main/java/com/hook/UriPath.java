@@ -21,22 +21,24 @@ public class UriPath extends AbstractClassHook implements LoadHookClass {
             if (className.contains("StandardEngineValve")) {
                 System.out.println("[Agent] StandardEngineValve is matched!");
                 ctClass = classPool.makeClass(new ByteArrayInputStream(bytesCode));
-                String src_before=""
+                String src_before = ""
                         + "String jvmRoute = System.getProperty(\"jvmRoute\");"
                         + "String hostIp=$1.getServerName();"
                         + "String sessionId = $1.getSession().getId();"
                         + "String uri = $1.getRequestURI();"
+                        + "String host=$1.getHost().getAppBase();"
                         + "System.out.println(\"{"
                         + "server: '\" + jvmRoute + \"' "
                         + ", hostip: '\"+hostIp+\"'"
                         + ", sessionId: '\" + sessionId + \"' "
                         + ", uri: '\" + uri + \"' "
+                        + ", host: '\" + host + \"' "
                         + ", stTime: '\" + System.currentTimeMillis() + \"' "
                         + "}\");";
-               // System.out.println("2");
-                insertBefore(ctClass,"invoke","",src_before);
-               // System.out.println("3");
-                String src_after=""
+                // System.out.println("2");
+                insertBefore(ctClass, "invoke", "", src_before);
+                // System.out.println("3");
+                String src_after = ""
                         + "String jvmRoute = System.getProperty(\"jvmRoute\");"
                         + "String sessionId = $1.getSession().getId();"
                         //+ "String hostIp=$1.getServerName();"
@@ -49,7 +51,6 @@ public class UriPath extends AbstractClassHook implements LoadHookClass {
                         + ", edTime: '\" + System.currentTimeMillis() + \"' "
                         + ", status: '\" + $2.getStatus() + \"' "
                         + "}\");";
-
 
 
                 bytesCode = ctClass.toBytecode();

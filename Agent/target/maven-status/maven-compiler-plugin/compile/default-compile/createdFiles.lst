@@ -1,3 +1,4 @@
+com/hook/TomcatClass.class
 com/hook/ProcessBuilderHook.class
 com/agent/LoadHookClass.class
 com/agent/JarPath.class

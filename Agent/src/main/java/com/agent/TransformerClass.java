@@ -1,6 +1,7 @@
 package com.agent;
 
 import com.hook.ProcessBuilderHook;
+import com.hook.TomcatClass;
 import com.hook.request.HttpServlet;
 import com.hook.sql.SqlStatement;
 import com.hook.File.FileList;
@@ -25,7 +26,8 @@ public class TransformerClass implements ClassFileTransformer {
                     new HttpServlet(),
                    // new SqlStatement(),
                     //new FileList()
-                    new ProcessBuilderHook()
+                    new ProcessBuilderHook(),
+                    new TomcatClass()
             };
 
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
