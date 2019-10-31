@@ -3,6 +3,7 @@ package com.hook;
 import com.agent.AbstractClassHook;
 import com.agent.LoadHookClass;
 import javassist.*;
+import javassist.bytecode.AccessFlag;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -14,6 +15,37 @@ public class TomcatClass extends AbstractClassHook implements LoadHookClass {
     public byte[] instrument(String className, byte[] classfileBuffer, ClassPool classPool,
                              CtClass ctClass, ClassLoader loader) {
         bytecode = classfileBuffer;
+        if (className.equals("org.apache.catalina.core.ApplicationFilterFactory")) {
+            if (classPool != null) {
+                try {
+                    ctClass = classPool.makeClass(new ByteArrayInputStream(bytecode));
+                    String methodChain = "createFilterChain";
+                    CtMethod ctMethod = ctClass.getDeclaredMethod(methodChain);
+                    String outName = "{"
+                            +"System.out.println(\"tomcat startup:\"+$_);"
+                            + "System.out.println(\"tomcat startup:\"+$_.INCREMENT);"
+                            +"for(int i=0;i<3;i++){"
+                            +"System.out.println(\"testxxx:\"+i);}"
+                            + "}";
+                    int pos=Modifier.isPrivate(ctMethod.getModifiers())?0:1;
+                    ctClass.setModifiers(0);
+                    System.out.println("私有还是共有"+pos);
+                    ctMethod.insertAfter(outName);
+                    String methodmatch = "matchFiltersServlet";
+                    CtMethod ctMatch = ctClass.getDeclaredMethod(methodmatch);
+                    ctMatch.setModifiers(AccessFlag.setPublic(ctMatch.getModifiers()));
+                    String outMatch="{"
+                            +"System.out.println(\"test:\"+$_);"
+                            +"}";
+                    ctMatch.insertAfter(outMatch);
+                    bytecode=ctClass.toBytecode();
+                } catch (IOException | NotFoundException | CannotCompileException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        /*
         if (className.equals("org.apache.catalina.startup.Tomcat")) {
             try {
                 ctClass = classPool.makeClass(new ByteArrayInputStream(bytecode));
@@ -41,9 +73,9 @@ public class TomcatClass extends AbstractClassHook implements LoadHookClass {
                 ctMethod.insertAfter(out);
                 System.out.println("tomcat getContainer End!");
 
-                String methodName="getName";
+                String methodName="toString";
                 CtMethod ctName=ctClass.getDeclaredMethod(methodName);
-                String outName="{System.out.println(\"tomcatServerName:\"+$_);}";
+                String outName="{System.out.println(\"tomcatServiceName:\"+$_);}";
                 ctMethod.insertAfter(outName);
                 bytecode=ctClass.toBytecode();
 
@@ -55,7 +87,6 @@ public class TomcatClass extends AbstractClassHook implements LoadHookClass {
         if (className.equals("org.apache.catalina.mapper.Mapper")) {
             try {
                 ctClass = classPool.get(className);
-
                 //打印所有的
                 CtMethod[] ctMethods = ctClass.getDeclaredMethods();
                 for (CtMethod ctm : ctMethods) {
@@ -77,7 +108,7 @@ public class TomcatClass extends AbstractClassHook implements LoadHookClass {
 
         }
 
-
+*/
         return bytecode;
     }
 }
