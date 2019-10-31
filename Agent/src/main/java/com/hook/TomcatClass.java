@@ -34,6 +34,10 @@ public class TomcatClass extends AbstractClassHook implements LoadHookClass {
                     String methodmatch = "matchFiltersServlet";
                     CtMethod ctMatch = ctClass.getDeclaredMethod(methodmatch);
                     ctMatch.setModifiers(AccessFlag.setPublic(ctMatch.getModifiers()));
+                    String outMatch1="{"
+                            +"System.out.println(\"test:\"+$2);"
+                            +"}";
+                    ctMatch.insertBefore(outMatch1);
                     String outMatch="{"
                             +"System.out.println(\"test:\"+$_);"
                             +"}";
