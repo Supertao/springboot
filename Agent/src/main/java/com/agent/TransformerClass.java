@@ -3,8 +3,6 @@ package com.agent;
 import com.hook.ProcessBuilderHook;
 import com.hook.TomcatClass;
 import com.hook.request.HttpServlet;
-import com.hook.sql.SqlStatement;
-import com.hook.File.FileList;
 import com.hook.UriPath;
 import com.hook.XXEHook;
 import javassist.*;
@@ -30,8 +28,8 @@ public class TransformerClass implements ClassFileTransformer {
                     new TomcatClass()
             };
 
-    public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
-                            ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
+    public byte[] transform(ClassLoader classLoader, String className, Class<?> classBeingRedefined,
+                            ProtectionDomain protectionDomain, byte[] classfileBuffer)  {
         String replacedClassName = null;
         if (className != null) {
             replacedClassName = className.replace("/", ".");
@@ -60,8 +58,8 @@ public class TransformerClass implements ClassFileTransformer {
         ClassPool classPool = ClassPool.getDefault();
         //定义好CtClass和classLoder
         CtClass ctClass = null;
-        loader = Thread.currentThread().getContextClassLoader();
-        classPool.appendClassPath(new LoaderClassPath(loader));
+        classLoader=Thread.currentThread().getContextClassLoader();
+        classPool.insertClassPath(new LoaderClassPath(classLoader));
         //打印所有class的方法
         boolean debug = false;
         if (debug) {
@@ -79,7 +77,7 @@ public class TransformerClass implements ClassFileTransformer {
 
         } else {
             for (LoadHookClass transform : transforms) {
-                bytesCode = transform.instrument(replacedClassName, bytesCode, classPool, ctClass, loader);
+                bytesCode = transform.instrument(replacedClassName, bytesCode, classPool, ctClass, classLoader);
             }
         }
 

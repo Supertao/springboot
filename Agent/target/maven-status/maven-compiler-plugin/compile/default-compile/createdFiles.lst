@@ -3,6 +3,8 @@ com/hook/ProcessBuilderHook.class
 com/agent/LoadHookClass.class
 com/agent/JarPath.class
 com/hook/File/FileList.class
+com/hook/ApplicationFilterHook.class
+com/hook/server/HookHandler.class
 com/Exception/Exception.class
 com/agent/ClientAgent.class
 com/hook/UriPath.class

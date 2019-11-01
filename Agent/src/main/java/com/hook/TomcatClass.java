@@ -13,17 +13,19 @@ public class TomcatClass extends AbstractClassHook implements LoadHookClass {
 
     @Override
     public byte[] instrument(String className, byte[] classfileBuffer, ClassPool classPool,
-                             CtClass ctClass, ClassLoader loader) {
+                             CtClass ctClass, ClassLoader classLoader) {
         bytecode = classfileBuffer;
         if (className.equals("org.apache.catalina.core.ApplicationFilterFactory")) {
             if (classPool != null) {
                 try {
+                    System.out.println("classloader:"+classLoader);
                     ctClass = classPool.makeClass(new ByteArrayInputStream(bytecode));
                     String methodChain = "createFilterChain";
                     CtMethod ctMethod = ctClass.getDeclaredMethod(methodChain);
                     String outName = "{"
                             +"System.out.println(\"tomcat startup:\"+$_);"
                             + "System.out.println(\"tomcat startup:\"+$_.INCREMENT);"
+                            +"com.hook.server.HookHandler.showChain($_);"
                             +"for(int i=0;i<3;i++){"
                             +"System.out.println(\"testxxx:\"+i);}"
                             + "}";
