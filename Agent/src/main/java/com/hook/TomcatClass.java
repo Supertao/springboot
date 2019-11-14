@@ -4,17 +4,43 @@ import com.agent.AbstractClassHook;
 import com.agent.LoadHookClass;
 import javassist.*;
 import javassist.bytecode.AccessFlag;
+import org.apache.catalina.ContainerEvent;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 public class TomcatClass extends AbstractClassHook implements LoadHookClass {
     byte[] bytecode;
+    public static void showEvent(Object object)
+    {
+        if(object instanceof ContainerEvent)
+        {
+            ContainerEvent newEvent=(ContainerEvent)object;
+            System.out.println("Tomcat Event:"+newEvent.getType()+",tomcat 对应关系:"+newEvent.getContainer().getMBeanKeyProperties());
+        }
+    }
 
     @Override
     public byte[] instrument(String className, byte[] classfileBuffer, ClassPool classPool,
                              CtClass ctClass, ClassLoader classLoader) {
         bytecode = classfileBuffer;
+        if(className.equals("org.apache.catalina.mapper.MapperListener"))
+        {
+            if(classPool!=null)
+            {
+                try {
+                    ctClass = classPool.makeClass(new ByteArrayInputStream(bytecode));
+                    String methodEvent = "containerEvent";
+                    CtMethod ctEvent = ctClass.getDeclaredMethod(methodEvent);
+                    String outEvent = "{"+this.getClass().getName()+".showEvent($1);"+"}";
+                    ctEvent.insertBefore(outEvent);
+                    bytecode=ctClass.toBytecode();
+                } catch (IOException | NotFoundException | CannotCompileException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
         if (className.equals("org.apache.catalina.core.ApplicationFilterFactory")) {
             if (classPool != null) {
                 try {
